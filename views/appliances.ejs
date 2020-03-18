@@ -8,122 +8,33 @@
 <body>
   <%- include('partials/nav') -%>
   <h1>Appliances</h1>
-  <div class="container">
-    <div class="row">
-      <div class="row ml-1">
-        <!-- Search form -->
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+  <div>
+    <nav class="cotainer">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-alpha-tab" data-toggle="tab" href="#nav-alpha" role="tab" aria-controls="nav-alpha" aria-selected="true">SC4 Alpha</a>
+        <a class="nav-item nav-link" id="nav-bravo-tab" data-toggle="tab" href="#nav-bravo" role="tab" aria-controls="nav-bravo" aria-selected="false">SC4 Bravo</a>
+        <a class="nav-item nav-link" id="nav-charlie-tab" data-toggle="tab" href="#nav-charlie" role="tab" aria-controls="nav-charlie" aria-selected="false">SC4 Charlie</a>
+        <a class="nav-item nav-link" id="nav-eu-tab" data-toggle="tab" href="#nav-eu" role="tab" aria-controls="nav-eu" aria-selected="false">EU</a>
+        <a class="nav-item nav-link" id="nav-ca-tab" data-toggle="tab" href="#nav-ca" role="tab" aria-controls="nav-ca" aria-selected="false">CA</a>
       </div>
-      <div class="ml-auto mr-3">
-        <button type="button" class="btn btn-outline-primary">+ New Appliance</button>
+
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-alpha" role="tabpanel" aria-labelledby="nav-alpha-tab">
+        <%- include('partials/sc4alpha') -%>
       </div>
-    </div>
-    <br>
-    <div class="row">
-      <table class="table table-striped table-hover table-sm">
-        <thead>
-          <tr>
-            <th scope="col">Select</th>
-            <th scope="col">Appliance IP</th>
-            <th scope="col">Current</th>
-            <th scope="col">Previous</th>
-            <th scope="col">Version</th>
-            <th scope="col">Updated Date</th>
-            <th scope="col">Updated By</th>
-            <th scope="col">Operations</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-
-                </label>
-              </div>
-            </th>
-            <td>10.104.91.152</td>
-            <td>OPEN</td>
-            <td>HANMIPO3</td>
-            <td>140</td>
-            <td>DATE</td>
-            <td>nlee</td>
-            <td>
-              <div class="">
-                <a href="#"><i class="fas fa-edit"></i></a>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-
-                </label>
-              </div>
-            </th>
-            <td>10.104.91.152</td>
-            <td>OPEN</td>
-            <td>HANMIPO3</td>
-            <td>140</td>
-            <td>DATE</td>
-            <td>nlee</td>
-            <td>
-              <div class="">
-                <a href="#"><i class="fas fa-edit"></i></a>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-
-                </label>
-              </div>
-            </th>
-            <td>10.104.91.152</td>
-            <td>OPEN</td>
-            <td>HANMIPO3</td>
-            <td>140</td>
-            <td>DATE</td>
-            <td>nlee</td>
-            <td>
-              <div class="">
-                <a href="#"><i class="fas fa-edit"></i></a>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-
-                </label>
-              </div>
-            </th>
-            <td>10.104.91.152</td>
-            <td>OPEN</td>
-            <td>HANMIPO3</td>
-            <td>140</td>
-            <td>DATE</td>
-            <td>nlee</td>
-            <td>
-              <div class="">
-                <a href="#"><i class="fas fa-edit"></i></a>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="tab-pane fade" id="nav-bravo" role="tabpanel" aria-labelledby="nav-bravo-tab">
+        <%- include('partials/sc4bravo') -%>
+      </div>
+      <div class="tab-pane fade" id="nav-charlie" role="tabpanel" aria-labelledby="nav-charlie-tab">
+          <%- include('partials/sc4charlie') -%>
+      </div>
+      <div class="tab-pane fade" id="nav-eu" role="tabpanel" aria-labelledby="nav-eu-tab">
+        <%- include('partials/eu') -%>
+      </div>
+      <div class="tab-pane fade" id="nav-ca" role="tabpanel" aria-labelledby="nav-ca-tab">
+        <%- include('partials/ca') -%>
+      </div>
     </div>
   </div>
   <%- include('partials/footer') -%>
