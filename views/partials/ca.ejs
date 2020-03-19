@@ -5,7 +5,10 @@
       <input class="form-control" type="text" placeholder="Search" aria-label="Search">
     </div>
     <div class="ml-auto mr-3">
-      <button type="button" class="btn btn-outline-primary">+ New Appliance</button>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#CAModal">
+        + New Appliance
+      </button>
     </div>
   </div>
   <br>
@@ -35,7 +38,7 @@
           </th>
           <td>10.104.91.152</td>
           <td>CA</td>
-          <td>CA</td>
+          <td>HANMIPO3</td>
           <td>140</td>
           <td>DATE</td>
           <td>nlee</td>
@@ -58,7 +61,7 @@
           </th>
           <td>10.104.91.152</td>
           <td>CA</td>
-          <td>CA</td>
+          <td>HANMIPO3</td>
           <td>140</td>
           <td>DATE</td>
           <td>nlee</td>
@@ -81,7 +84,7 @@
           </th>
           <td>10.104.91.152</td>
           <td>CA</td>
-          <td>CA</td>
+          <td>HANMIPO3</td>
           <td>140</td>
           <td>DATE</td>
           <td>nlee</td>
@@ -104,7 +107,7 @@
           </th>
           <td>10.104.91.152</td>
           <td>CA</td>
-          <td>CA</td>
+          <td>HANMIPO3</td>
           <td>140</td>
           <td>DATE</td>
           <td>nlee</td>
@@ -118,5 +121,46 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="CAModal" tabindex="-1" role="dialog" aria-labelledby="CAModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CAModalLabel">Create New Appliance: CA </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="applianceIpCA">Appliance IP</label>
+            <input type="text" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpCA" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
+            <small id="applianceIpHelpCA" class="form-text text-muted">Appliance IP adress is required.</small>
+          </div>
+          <div class="form-group">
+            <label for="applianceVersionCA">Appliance Version</label>
+            <input type="text" class="form-control" id="applianceVersionCA" placeholder="Appliance Version">
+          </div>
+          <div class="form-group">
+            <label for="currentCA">Current Project</label>
+            <input type="text" class="form-control" id="currentCA" placeholder="Current Project">
+            <small id="currentCA" class="form-text text-muted">Default value will be set to CA.</small>
+          </div>
+          <div class="form-group">
+            <label for="previousCA">Previous Project</label>
+            <input type="text" class="form-control" id="previousCA" placeholder="Previous Project">
+            <small id="previousCA" class="form-text text-muted">Default value will be set to CA.</small>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
