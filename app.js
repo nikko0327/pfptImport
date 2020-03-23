@@ -2,7 +2,12 @@
 
 const express = require('express');
 const app = express();
-app.set('view engine', 'ejs');
+
+
+// set so we dont have to type .ejs all the time when routing
+app.set("view engine", "ejs");
+// used so we can make a public folder that contains stylesheet and js, and be able to access it
+app.use(express.static("public"));
 
 const port = 3000;
 
