@@ -55,7 +55,7 @@ passport.deserializeUser(function(id, cb) {
 /* MONGOOSE SETUP */
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ImportCenter');
+mongoose.connect('mongodb://localhost/ImportCenter', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Schema = mongoose.Schema;
 const UserDetail = new Schema({
