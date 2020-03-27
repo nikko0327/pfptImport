@@ -1,10 +1,8 @@
 //jshint esversion: 6
 
 const express = require('express');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require("express-session");
-const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
 
@@ -22,10 +20,6 @@ app.use(session({
   secret: "P@ssw0rd",
   resave: true,
   saveUninitialized: true,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    collection: 'sessions'
-  })
  }));
 const port = process.env.PORT || 3000;
 
@@ -35,7 +29,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  console.log("Login route accessed.")
   res.render("login");
 });
 
@@ -55,23 +48,27 @@ app.listen(port, () => {
 
 
 /*  PASSPORT SETUP  */
-
-
+const passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/success', (req, res) => res.send("Welcome "+req.query.username+"!!"));
 app.get('/error', (req, res) => res.send("error logging in"));
 
-passport.serializeUser(function(user, done) {
-  done(null, user.username);
+passport.serializeUser(function(user, cb) {
+  console.log("Serialized.\n" + user.id + "\n" + user.username)
+  cb(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
-    done(null, {user: user});
+passport.deserializeUser(function(id, cb) {
+  User.findById(id, function(err, user) {
+    console.log("DE-Serialized.")
+    cb(err, user);
+  });
 });
 
 /* MONGOOSE SETUP */
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/ImportCenter', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Schema = mongoose.Schema;

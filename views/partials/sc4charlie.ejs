@@ -1,28 +1,39 @@
+<style>
+  .titles {
+    float: left;
+  }
+</style>
+
 <div class="container">
-  <div class="row">
-    <div class="row ml-1">
-      <!-- Search form -->
-      <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-    </div>
-    <div class="ml-auto mr-3">
+  <div class="">
+    <div class="titles">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#charlieModal">
+      <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#charlieModal">
         + New Appliance
       </button>
     </div>
-  </div>
-  <br>
-  <div class="row">
-    <table class="table table-striped table-hover table-sm">
+    <table
+      class="table table-striped table-hover table-sm"
+      id="table"
+      data-toggle="table"
+      data-sort-class="table-active"
+      data-search="true"
+      data-visible-search="true"
+      data-search-align="right"
+      data-show-pagination-switch="true"
+      data-show-fullscreen="true"
+      data-show-columns="true"
+      data-page-list="[10, 25, 50, 100, all]"
+      data-sortable="true">
       <thead>
         <tr>
           <th scope="col">Select</th>
-          <th scope="col">Appliance IP</th>
-          <th scope="col">Current</th>
-          <th scope="col">Previous</th>
-          <th scope="col">Version</th>
-          <th scope="col">Updated Date</th>
-          <th scope="col">Updated By</th>
+          <th data-field="appliance" data-sortable="true" scope="col">Appliance IP</th>
+          <th data-field="current" data-sortable="true" scope="col">Current</th>
+          <th data-field="previous" data-sortable="true" scope="col">previous</th>
+          <th data-field="version" data-sortable="true" scope="col">Version</th>
+          <th data-field="updated" data-sortable="true" scope="col">Updated Date</th>
+          <th data-field="updatedBy" data-sortable="true" scope="col">Updated By</th>
           <th scope="col">Operations</th>
         </tr>
       </thead>
@@ -36,9 +47,55 @@
               </label>
             </div>
           </th>
-          <td>10.104.91.152</td>
+          <td>10.104.91.155</td>
           <td>CHARLIE</td>
-          <td>HANMIPO3</td>
+          <td>HANMIPOC03</td>
+          <td>140</td>
+          <td>DATE</td>
+          <td>nlee</td>
+          <td>
+            <div class="">
+              <a href="#"><i class="far fa-copy"></i></a>
+              <a data-toggle="modal" data-target="#charlieModalEdit" href="#charlieModalEdit"><i class="fas fa-edit"></i></a>
+              <a href="#"><i class="far fa-trash-alt"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+
+              </label>
+            </div>
+          </th>
+          <td>10.104.91.152</td>
+          <td>OPEN</td>
+          <td>HANMIPOC31</td>
+          <td>140</td>
+          <td>DATE</td>
+          <td>nlee</td>
+          <td>
+            <div class="">
+              <a href="#"><i class="far fa-copy"></i></a>
+              <a data-toggle="modal" data-target="#charlieModalEdit" href="#charlieModalEdit"><i class="fas fa-edit"></i></a>
+              <a href="#"><i class="far fa-trash-alt"></i></a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+
+              </label>
+            </div>
+          </th>
+          <td>10.104.91.159</td>
+          <td>OPEN</td>
+          <td>HANMIPOC13</td>
           <td>140</td>
           <td>DATE</td>
           <td>nlee</td>
@@ -59,55 +116,9 @@
               </label>
             </div>
           </th>
-          <td>10.104.91.152</td>
-          <td>CHARLIE</td>
-          <td>HANMIPO3</td>
-          <td>140</td>
-          <td>DATE</td>
-          <td>nlee</td>
-          <td>
-            <div class="">
-              <a href="#"><i class="far fa-copy"></i></a>
-              <a href="#"><i class="fas fa-edit"></i></a>
-              <a href="#"><i class="far fa-trash-alt"></i></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-
-              </label>
-            </div>
-          </th>
-          <td>10.104.91.152</td>
-          <td>CHARLIE</td>
-          <td>HANMIPO3</td>
-          <td>140</td>
-          <td>DATE</td>
-          <td>nlee</td>
-          <td>
-            <div class="">
-              <a href="#"><i class="far fa-copy"></i></a>
-              <a href="#"><i class="fas fa-edit"></i></a>
-              <a href="#"><i class="far fa-trash-alt"></i></a>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-
-              </label>
-            </div>
-          </th>
-          <td>10.104.91.152</td>
-          <td>CHARLIE</td>
-          <td>HANMIPO3</td>
+          <td>10.104.91.150</td>
+          <td>OPEN</td>
+          <td>HANMIPOC35</td>
           <td>140</td>
           <td>DATE</td>
           <td>nlee</td>
@@ -124,7 +135,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Create Modal -->
 <div class="modal fade" id="charlieModal" tabindex="-1" role="dialog" aria-labelledby="charlieModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -137,23 +148,65 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="applianceIpC">Appliance IP</label>
-            <input type="text" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpC" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
-            <small id="applianceIpHelpC" class="form-text text-muted">Appliance IP adress is required.</small>
+            <label for="applianceIpA">Appliance IP</label>
+            <input type="text" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpA" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
+            <small id="applianceIpHelpA" class="form-text text-muted">Appliance IP adress is required.</small>
           </div>
           <div class="form-group">
-            <label for="applianceVersionC">Appliance Version</label>
-            <input type="text" class="form-control" id="applianceVersionC" placeholder="Appliance Version">
+            <label for="applianceVersionA">Appliance Version</label>
+            <input type="text" class="form-control" id="applianceVersionA" placeholder="Appliance Version">
           </div>
           <div class="form-group">
-            <label for="currentC">Current Project</label>
-            <input type="text" class="form-control" id="currentC" placeholder="Current Project">
-            <small id="currentC" class="form-text text-muted">Default value will be set to CHARLIE.</small>
+            <label for="currentA">Current Project</label>
+            <input type="text" class="form-control" id="currentA" placeholder="Current Project">
+            <small id="currentA" class="form-text text-muted">Default value will be set to OPEN.</small>
           </div>
           <div class="form-group">
-            <label for="previousC">Previous Project</label>
-            <input type="text" class="form-control" id="previousC" placeholder="Previous Project">
-            <small id="previousC" class="form-text text-muted">Default value will be set to CHARLIE.</small>
+            <label for="previousA">Previous Project</label>
+            <input type="text" class="form-control" id="previousA" placeholder="Previous Project">
+            <small id="previousA" class="form-text text-muted">Default value will be set to OPEN.</small>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="charlieModalEdit" tabindex="-1" role="dialog" aria-labelledby="charlieModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="charlieModalLabel">Edit Appliance: SC4-C </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="applianceIpA">Appliance IP</label>
+            <input type="text" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpA" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
+            <small id="applianceIpHelpA" class="form-text text-muted">Appliance IP adress is required.</small>
+          </div>
+          <div class="form-group">
+            <label for="applianceVersionA">Appliance Version</label>
+            <input type="text" class="form-control" id="applianceVersionA" placeholder="Appliance Version">
+          </div>
+          <div class="form-group">
+            <label for="currentA">Current Project</label>
+            <input type="text" class="form-control" id="currentA" placeholder="Current Project">
+            <small id="currentA" class="form-text text-muted">Default value will be set to OPEN.</small>
+          </div>
+          <div class="form-group">
+            <label for="previousA">Previous Project</label>
+            <input type="text" class="form-control" id="previousA" placeholder="Previous Project">
+            <small id="previousA" class="form-text text-muted">Default value will be set to OPEN.</small>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
