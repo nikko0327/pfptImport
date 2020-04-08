@@ -30,6 +30,12 @@ const ApplianceSchema = new mongoose.Schema({
     type: String,
     unique: false,
     required: false
+  },
+  datacenter: {
+    type: String,
+    unique: false,
+    required: true,
+    default: "N/A"
   }
 });
 

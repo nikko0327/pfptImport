@@ -65,12 +65,13 @@ db.on('open', () => {
 
 //TEST Appliance
 // Appliance.create({
-//    ip: "10.104.91.150",
-//    current: "CHRISTUS",
-//    previous: "USAA",
+//    ip: "10.104.91.155",
+//    current: "WORLEY3",
+//    previous: "JACOBS",
 //    version: "3.5.130",
 //    updatedDate: Date.now(),
-//    updatedBy: "nikkolee"
+//    updatedBy: "nikkolee",
+//    datacenter: "SC4"
 // }, function(err, cat){
 //     if(err){
 //         console.log(err);
@@ -142,7 +143,13 @@ app.get("/index", isLoggedIn, (req, res) => {
 
 //appliance page navigation
 app.get("/appliance", isLoggedIn, (req, res) => {
-  res.render("appliances");
+  Appliance.find({}, function(err, appliances){
+    if(err){
+        console.log(err);
+    } else {
+        res.render("appliances", {appliances: appliances});
+    }
+  })
 });
 
 app.listen(port, () => {
