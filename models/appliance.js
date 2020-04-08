@@ -32,4 +32,6 @@ const ApplianceSchema = new mongoose.Schema({
   }
 });
 
-mongoose.model('Appliance', ApplianceSchema);
+const appliance = new mongoose.model('Appliance', ApplianceSchema);
+
+module.exports = appliance;
