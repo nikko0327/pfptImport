@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const ApplianceSchema = new mongoose.Schema({
   ip: {
@@ -32,6 +33,5 @@ const ApplianceSchema = new mongoose.Schema({
   }
 });
 
-const appliance = new mongoose.model('Appliance', ApplianceSchema);
-
-module.exports = appliance;
+ApplianceSchema.plugin(passportLocalMongoose);
+module.exports = mongoose.model("Appliance", ApplianceSchema);

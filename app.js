@@ -7,6 +7,8 @@ const session = require("express-session");
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(session);
 const LocalStrategy = require('passport-local').Strategy;
+const Appliance = require("./models/appliance");
+const User = require("./models/user");
 const app = express();
 const flash = require('connect-flash');
 app.use(flash());
@@ -49,12 +51,33 @@ db.on('open', () => {
     console.log('DB Connection established successfully');
 });
 
-const Schema = mongoose.Schema;
-const UserDetail = new Schema({
-      username: String,
-      password: String
-    });
-const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
+//TEST User
+// User.create({
+//    username: "nikko0327",
+//    password: "P@ssw0rd"
+// }, function(err, cat){
+//     if(err){
+//         console.log(err);
+//     } else {
+//         console.log(cat);
+//     }
+// });
+
+//TEST Appliance
+// Appliance.create({
+//    ip: "10.104.91.150",
+//    current: "CHRISTUS",
+//    previous: "USAA",
+//    version: "3.5.130",
+//    updatedDate: Date.now(),
+//    updatedBy: "nikkolee"
+// }, function(err, cat){
+//     if(err){
+//         console.log(err);
+//     } else {
+//         console.log(cat);
+//     }
+// });
 
 
 /*  PASSPORT SETUP  */
@@ -71,7 +94,7 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-  UserDetails.findById(id, function(err, user) {
+  User.findById(id, function(err, user) {
     console.log("DE-Serialized.")
     console.log("Check ID: " + user.username);
     cb(err, user);
@@ -82,7 +105,7 @@ passport.deserializeUser(function(id, cb) {
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-      UserDetails.findOne({
+      User.findOne({
         username: username
       }, function(err, user) {
         if (err) {
@@ -118,7 +141,7 @@ app.get("/index", isLoggedIn, (req, res) => {
 });
 
 //appliance page navigation
-app.get("/appliance", (req, res) => {
+app.get("/appliance", isLoggedIn, (req, res) => {
   res.render("appliances");
 });
 
