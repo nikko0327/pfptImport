@@ -3,7 +3,6 @@
     float: left;
   }
 </style>
-
 <div class="container">
   <div class="">
     <div class="titles">
@@ -33,14 +32,18 @@
           <th data-field="previous" data-sortable="true" scope="col">previous</th>
           <th data-field="version" data-sortable="true" scope="col">Version</th>
           <th data-field="updated" data-sortable="true" scope="col">Datacenter</th>
-          <th data-field="updatedBy" data-sortable="true" scope="col">Updated Date</th>
+          <th data-field="updatedDate" data-sortable="true" scope="col">Updated Date</th>
           <th data-field="updatedBy" data-sortable="true" scope="col">Updated By</th>
           <th scope="col">Operations</th>
         </tr>
       </thead>
-      <% appliances.forEach(function(appliance){ %>
       <tbody>
-        <tr>
+        <% appliances.forEach(function(appliance){ %>
+        <tr data-id="<%= appliance._id %>"
+          data-ip="<%= appliance.ip %>"
+          data-current="<%= appliance.current %>"
+          data-previous="<%= appliance.previous %>"
+          data-version="<%= appliance.version %>">
           <th scope="row">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -59,13 +62,17 @@
           <td>
             <div class="">
               <a href="#"><i class="far fa-copy"></i></a>
-              <a data-toggle="modal" data-target="#alphaModalEdit" href="#alphaModalEdit"><i class="fas fa-edit"></i></a>
-              <a href="#"><i class="far fa-trash-alt"></i></a>
+              <a class="edit" data-toggle="modal" data-target="#alphaModalEdit" href="/appliance/<%= appliance.id %>/edit"><i class="fas fa-edit"></i></a>
+              <!-- <form action="/appliance/<%= appliance._id %>?_method=DELETE" method="POST" class="delete-form">
+                <button class="btn btn-sm" style="background-color:transparent;">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </form> -->
             </div>
           </td>
         </tr>
+        <% }); %>
       </tbody>
-      <% }); %>
     </table>
   </div>
 </div>
@@ -81,25 +88,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/appliance/new" method="POST">
           <div class="form-group">
             <label for="applianceIpA">Appliance IP</label>
-            <input type="text" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpA" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
+            <input type="text" name="ip" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpA" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
             <small id="applianceIpHelpA" class="form-text text-muted">Appliance IP adress is required.</small>
           </div>
           <div class="form-group">
-            <label for="applianceVersionA">Appliance Version</label>
-            <input type="text" class="form-control" id="applianceVersionA" placeholder="Appliance Version">
-          </div>
-          <div class="form-group">
             <label for="currentA">Current Project</label>
-            <input type="text" class="form-control" id="currentA" placeholder="Current Project">
+            <input type="text" name="current" class="form-control" id="currentA" placeholder="Current Project">
             <small id="currentA" class="form-text text-muted">Default value will be set to OPEN.</small>
           </div>
           <div class="form-group">
             <label for="previousA">Previous Project</label>
-            <input type="text" class="form-control" id="previousA" placeholder="Previous Project">
+            <input type="text" name="previous" class="form-control" id="previousA" placeholder="Previous Project">
             <small id="previousA" class="form-text text-muted">Default value will be set to OPEN.</small>
+          </div>
+          <div class="form-group">
+            <label for="applianceVersionA">Appliance Version</label>
+            <input type="text" name="version" class="form-control" id="applianceVersionA" placeholder="Appliance Version">
+          </div>
+          <div class="form-group">
+            <label for="datacenter" hidden>Datacenter</label>
+            <input type="text" name="datacenter" class="form-control" id="datacenter" placeholder="" value="SC4" hidden>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -123,27 +134,27 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="editSubmit">
           <div class="form-group">
             <label for="applianceIpA">Appliance IP</label>
-            <input type="text" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpA" aria-describedby="applianceIpHelp" placeholder="Enter Appliance IP">
+            <input type="text" name="ip" required pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" class="form-control" id="applianceIpA" aria-describedby="applianceIpHelp" value="{APPLIANCE}">
             <small id="applianceIpHelpA" class="form-text text-muted">Appliance IP adress is required.</small>
           </div>
           <div class="form-group">
-            <label for="applianceVersionA">Appliance Version</label>
-            <input type="text" class="form-control" id="applianceVersionA" placeholder="Appliance Version">
-          </div>
-          <div class="form-group">
             <label for="currentA">Current Project</label>
-            <input type="text" class="form-control" id="currentA" placeholder="Current Project">
-            <small id="currentA" class="form-text text-muted">Default value will be set to OPEN.</small>
+            <input type="text" name="current" class="form-control" id="currentA" placeholder="Current Project">
+            <small id="currentHelpA" class="form-text text-muted">Default value will be set to OPEN.</small>
           </div>
           <div class="form-group">
             <label for="previousA">Previous Project</label>
-            <input type="text" class="form-control" id="previousA" placeholder="Previous Project">
-            <small id="previousA" class="form-text text-muted">Default value will be set to OPEN.</small>
+            <input type="text" name="previous" class="form-control" id="previousA" placeholder="Previous Project">
+            <small id="previousHelpA" class="form-text text-muted">Default value will be set to OPEN.</small>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="form-group">
+            <label for="applianceVersionA">Appliance Version</label>
+            <input type="text" name="version" class="form-control" id="applianceVersionA" placeholder="Appliance Version">
+          </div>
+          <button onclick='this.form.action="somethingelse' type="submit" class="btn btn-primary" >Submit</button>
         </form>
       </div>
       <div class="modal-footer">

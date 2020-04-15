@@ -53,7 +53,7 @@ db.on('open', () => {
 
 //TEST User
 // User.create({
-//    username: "nikko0327",
+//    username: "nlee",
 //    password: "P@ssw0rd"
 // }, function(err, cat){
 //     if(err){
@@ -65,14 +65,15 @@ db.on('open', () => {
 
 //TEST Appliance
 // Appliance.create({
-//    ip: "10.104.91.155",
+//    ip: "10.104.91.123",
 //    current: "WORLEY3",
 //    previous: "JACOBS",
 //    version: "3.5.130",
 //    updatedDate: Date.now(),
 //    updatedBy: "nikkolee",
-//    datacenter: "SC4"
-// }, function(err, cat){
+//    datacenter: "MARK"
+// },
+//  function(err, cat){
 //     if(err){
 //         console.log(err);
 //     } else {
@@ -96,8 +97,8 @@ passport.serializeUser(function(user, cb) {
 
 passport.deserializeUser(function(id, cb) {
   User.findById(id, function(err, user) {
-    console.log("DE-Serialized.")
-    console.log("Check ID: " + user.username);
+    // console.log("DE-Serialized.")
+    // console.log("Check ID: " + user.username);
     cb(err, user);
   });
 });
@@ -156,6 +157,61 @@ app.listen(port, () => {
   console.log("Connected to " + port);
 });
 
+// create new appliances
+app.post("/appliance/new", (req, res) => {
+  Appliance.create(req.body)
+    .then(result => {
+      console.log(result)
+    })
+    .catch(error => console.error(error))
+  console.log(req.body);
+  res.redirect("/appliance");
+});
+
+// delete appliance
+app.delete("/appliance/:id", isLoggedIn, (req, res) => {
+  Appliance.deleteOne({
+    _id: {
+      $id: req.params.id
+    }
+  }, (err) => {
+    if(err) {
+        req.flash('error', err.message);
+        res.redirect('/appliance');
+    } else {
+        Appliance.deleteOne( (err) => {
+          if(err) {
+              req.flash('error', err.message);
+              return res.redirect('/appliance');
+          }
+          req.flash('error', 'Appliance deleted!');
+          res.redirect('/appliance');
+        });
+    }
+  })
+});
+
+// edit route for the appliance Modal
+// app.get("/appliance/:id/edit", (req, res) => {
+//   console.log("EDIT ROUTE INVOKED: " + res)
+//   res.json({});
+// });
+
+//edit post route
+app.put('/name/:id/edit', (req, res, next) => {
+    // let id = {
+    //   _id: ObjectID(req.params.id)
+    // };
+    //
+    // dbase.collection("name").update({_id: id}, {$set:{'first_name': req.body.first_name, 'last_name': req.body.last_name}}, (err, result) => {
+    //   if(err) {
+    //     throw err;
+    //   }
+    //   res.send('user updated sucessfully');
+    // });
+    console.log("EDIT INVOKED")
+});
+
 
 app.post('/',
   passport.authenticate('local', { failureRedirect: '/' }),
@@ -184,7 +240,7 @@ function isLoggedIn(req, res, next) {
   // do any checks you want to in here
   // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
   // you can do this however you want with whatever variables you set up
-  console.log(req.isAuthenticated());
+  console.log("Authenticated user: " + req.isAuthenticated());
   if (req.isAuthenticated()){
       return next();
   }
